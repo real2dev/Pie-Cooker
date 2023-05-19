@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sky.shiyu.moe API Example</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h1>Sky.shiyu.moe API Example</h1>
+  
+  <form id="playerForm">
+    <label for="playerName">Player Name:</label>
+    <input type="text" id="playerName" required>
+    <br>
+    <label for="profile">Profile:</label>
+    <input type="text" id="profile" required>
+    <br>
+    <input type="submit" value="Get Coin Data">
+  </form>
+  
+  <div id="coinData"></div>
+
+  <script>
+    $(document).ready(function() {
+      // Handle form submission
+      $('#playerForm').submit(function(event) {
+        event.preventDefault();
+        var playerName = $('#playerName').val();
+        var profile = $('#profile').val();
+        var apiUrl = 'https://sky.shiyu.moe/api/v2/' + playerName + '/' + profile + '/profile';
+        
+        // Make the API request
+        $.ajax({
+          url: apiUrl,
+          type: 'GET',
+          success: function(data) {
+            // Display the coin data
+            var coinData = data.profile.members[0].coin;
+            $('#coinData').text('Coins: ' + coinData);
+          },
+          error: function() {
+            $('#coinData').text('Error retrieving coin data.');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
