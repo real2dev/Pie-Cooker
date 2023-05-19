@@ -26,7 +26,7 @@
         event.preventDefault();
         var playerName = $('#playerName').val();
         var profile = $('#profile').val();
-        var apiUrl = 'https://sky.shiyu.moe/api/v2/' + playerName + '/' + profile + '/profile';
+        var apiUrl = 'https://sky.shiyu.moe/api/v2/coins/' + playerName + '/' + profile;
         
         // Make the API request
         $.ajax({
