@@ -38,13 +38,17 @@ if (saveGame !== null) {
 }
 
 function format(number, type) {
+  let suffixes = ["", "K", "M", "B", "T"];
   let exponent = Math.floor(Math.log10(number));
   let mantissa = number / Math.pow(10, exponent);
-  if (exponent < 7) return number.toFixed(0);
+  
+  if (exponent < 3) return number.toFixed(0);
   if (type == "scientific") return mantissa.toFixed(2) + "e" + exponent;
-  if (type == "engineering") return (Math.pow(10, exponent % 7) * mantissa).toFixed(2) + "e" + (Math.floor(exponent / 7) * 7);
+  if (type == "engineering") {
+    let suffixIndex = Math.floor(exponent / 3);
+    return (mantissa * Math.pow(10, exponent % 3)).toFixed(2) + suffixes[suffixIndex];
+  }
 }
-
 
 function tab(tab) {
   // hide all your tabs, then show the one the user selected.
