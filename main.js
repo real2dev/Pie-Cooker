@@ -2,8 +2,10 @@ var gameData = {
   pie: 0,
   piePerClick: 1,
   piePerClickCost: 10,
-  update: 1.0.0
+  update: 1.0.1
 }
+
+document.getElementById("version").innerHTMl = "Version: " + gameData.update
 
 function cookPie() {
   gameData.pie += gameData.piePerClick
