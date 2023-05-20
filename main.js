@@ -8,7 +8,7 @@ var gameData = {
 
 function cookPie() {
   gameData.pie += gameData.piePerClick
-  document.getElementById("pieCooked").innerHTML = format(gameData.pie, "scientific") + " Pies Cooked"
+  document.getElementById("pieCooked").innerHTML = format(gameData.pie, "engineering") + " Pies Cooked"
 }
 
 function buyPiePerClick() {
@@ -16,8 +16,8 @@ function buyPiePerClick() {
     gameData.pie -= gameData.piePerClickCost
     gameData.piePerClick += 1
     gameData.piePerClickCost *= 2
-    document.getElementById("pieCooked").innerHTML = format(gameData.pie, "scientific") + " Pies Cooked"
-    document.getElementById("perClickUpgrade").innerHTML = "Upgrade Oven (Currently Level " + format(gameData.piePerClick, "scientific") + ") Cost: " + format(gameData.piePerClickCost, "scientific") + " Pie"
+    document.getElementById("pieCooked").innerHTML = format(gameData.pie, "engineering") + " Pies Cooked"
+    document.getElementById("perClickUpgrade").innerHTML = "Upgrade Oven (Currently Level " + format(gameData.piePerClick, "engineering") + ") Cost: " + format(gameData.piePerClickCost, "engineering") + " Pie"
   }
 }
 
@@ -25,7 +25,7 @@ var mainGameLoop = window.setInterval(function() {
   var diff = Date.now() - gameData.lastTick;
   gameData.lastTick = Date.now(); // Don't forget to update lastTick.
   gameData.pie += gameData.piePerClick * (diff / 1000); // divide diff by how often (ms) mainGameLoop is ran
-  document.getElementById("pieCooked").innerHTML = format(gameData.pie, "scientific") + " Pies Cooked";
+  document.getElementById("pieCooked").innerHTML = format(gameData.pie, "engineering") + " Pies Cooked";
 }, 1000);
 
 var saveGameLoop = window.setInterval(function() {
