@@ -2,6 +2,7 @@ var gameData = {
   pie: 0,
   piePerClick: 1,
   piePerClickCost: 10,
+  update: 1.0.0
 }
 
 function cookPie() {
@@ -15,6 +16,19 @@ function buyPiePerClick() {
     gameData.piePerClick += 1
     gameData.piePerClickCost *= 2
     document.getElementById("pieCooked").innerHTML = gameData.pie + " Pies Cooked"
-    document.getElementById("perClickUpgrade").innerHTML = "Upgrade Oven (Currently Level " + gameData.piePerClick + ") Cost: " + gameData.PiePerClickCost + " Pie"
+    document.getElementById("perClickUpgrade").innerHTML = "Upgrade Oven (Currently Level " + gameData.piePerClick + ") Cost: " + gameData.piePerClickCost + " Pie"
   }
+}
+
+var mainGameLoop = window.setInterval(function() {
+  cookPie()
+}, 1000)
+
+var saveGameLoop = window.setInterval(function() {
+  localStorage.setItem("pieMinerSave", JSON.stringify(gameData))
+}, 15000)
+
+var savegame = JSON.parse(localStorage.getItem("pieMinerSave"))
+if (savegame !== null) {
+  gameData = savegame
 }
