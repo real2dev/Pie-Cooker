@@ -1,12 +1,17 @@
-<!DOCTYPE html>
 <html>
-<head>
-  <title>The Pie Game</title>
-  <strong>The Pie Game</strong>
-</head>
-<body>
-<button type="button" name="pieButton">
-	Cook Pie
-</button>
-</body>
+	<head>
+		<link rel="stylesheet" type="text/css" href="interface.css" />
+	</head>
+	<body>
+		<button onclick="pieClick(1)">Cook Pie</button>
+		<br />
+		Cookies: <span id="pie">0</span>
+		<br />
+		<button onclick="buyChef()">Buy Chef</button>
+		<br />
+		Cursors: <span id="chefs">0</span>
+		<br />
+		Cursor Cost: <span id="chefCost">10</span>
+		<script type="text/javascript" src="main.js"></script>
+	</body>
 </html>
