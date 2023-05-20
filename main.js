@@ -23,7 +23,7 @@ function buyPiePerClick() {
   }
 }
 
-function buyPiePerClick() {
+function buyChef() {
   if (gameData.pie >= gameData.chefCost) {
     gameData.pie -= gameData.chefCost
     gameData.piePerSecond += 1
