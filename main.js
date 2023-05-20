@@ -5,8 +5,6 @@ var gameData = {
   update: 1.0.1
 }
 
-document.getElementById("version").innerHTMl = "Version: " + gameData.update
-
 function cookPie() {
   gameData.pie += gameData.piePerClick
   document.getElementById("pieCooked").innerHTML = gameData.pie + " Pies Cooked"
@@ -27,6 +25,7 @@ var mainGameLoop = window.setInterval(function() {
 }, 1000)
 
 var saveGameLoop = window.setInterval(function() {
+  document.getElementById("version").innerHTMl = "Version: " + gameData.update
   localStorage.setItem("pieMinerSave", JSON.stringify(gameData))
 }, 15000)
 
