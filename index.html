@@ -19,7 +19,7 @@
       var username = document.getElementById("usernameCoins").value;
       var profile = document.getElementById("profileCoins").value;
 
-      var apiUrl = `https://sky.shiiyu.moe/api/v2/coins/{username}/{profile}`;
+      var apiUrl = `https://sky.shiiyu.moe/api/v2/coins/${username}/${profile}`;
 
       fetch(apiUrl)
         .then(response => {
