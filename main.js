@@ -45,6 +45,15 @@ function format(number, type) {
 	if (type == "engineering") return (Math.pow(10, exponent % 3) * mantissa).toFixed(2) + "e" + (Math.floor(exponent / 3) * 3)
 }
 
+function tab(tab) {
+  // hide all your tabs, then show the one the user selected.
+  document.getElementById("cookPieMenu").style.display = "none"
+  document.getElementById("shopMenu").style.display = "none"
+  document.getElementById(tab).style.display = "inline-block"
+}
+// go to a tab for the first time, so not all show
+tab("cookPieMenu")
+
 if (typeof saveGame.pie !== "undefined") gameData.pie = saveGame.pie;
 if (typeof saveGame.piePerClick !== "undefined") gameData.piePerClick = saveGame.piePerClick;
 if (typeof saveGame.piePerClickCost !== "undefined") gameData.piePerClickCost = saveGame.piePerClickCost;
