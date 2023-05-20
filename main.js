@@ -3,6 +3,8 @@ var gameData = {
   pie: 0,
   piePerClick: 1,
   piePerClickCost: 10,
+  piePerSecond: 0,
+  chefCost: 10,
   lastTick: Date.now()
 }
 
@@ -17,14 +19,24 @@ function buyPiePerClick() {
     gameData.piePerClick += 1
     gameData.piePerClickCost *= 2
     document.getElementById("pieCooked").innerHTML = format(gameData.pie, "engineering") + " Pies Cooked"
-    document.getElementById("perClickUpgrade").innerHTML = "Upgrade Oven (Currently Level " + format(gameData.piePerClick, "engineering") + ") Cost: " + format(gameData.piePerClickCost, "engineering") + " Pie"
+    document.getElementById("perClickUpgrade").innerHTML = "Upgrade Oven (Currently Level " + format(gameData.piePerClick, "engineering") + ") Cost: " + format(gameData.piePerClickCost, "engineering") + " Pies"
+  }
+}
+
+function buyPiePerClick() {
+  if (gameData.pie >= gameData.chefCost) {
+    gameData.pie -= gameData.chefCost
+    gameData.piePerSecond += 1
+    gameData.chefCost *= 2.5
+    document.getElementById("pieCooked").innerHTML = format(gameData.pie, "engineering") + " Pies Cooked"
+    document.getElementById("buyChef").innerHTML = "Buy A Chef (Currently Have:  " + format(gameData.piePerSecond, "engineering") + ") Cost: " + format(gameData.chefCost, "engineering") + " Pies"
   }
 }
 
 var mainGameLoop = window.setInterval(function() {
   var diff = Date.now() - gameData.lastTick;
   gameData.lastTick = Date.now(); // Don't forget to update lastTick.
-  gameData.pie += gameData.piePerClick * (diff / 1000); // divide diff by how often (ms) mainGameLoop is ran
+  gameData.pie += gameData.piePerSecond * (diff / 1000); // divide diff by how often (ms) mainGameLoop is ran
   document.getElementById("pieCooked").innerHTML = format(gameData.pie, "engineering") + " Pies Cooked";
   document.getElementById("perClickUpgrade").innerHTML = "Upgrade Oven (Currently Level " + format(gameData.piePerClick, "engineering") + ") Cost: " + format(gameData.piePerClickCost, "engineering") + " Pie";
 }, 1000);
@@ -64,4 +76,6 @@ tab("cookPieMenu");
 if (typeof saveGame.pie !== "undefined") gameData.pie = saveGame.pie;
 if (typeof saveGame.piePerClick !== "undefined") gameData.piePerClick = saveGame.piePerClick;
 if (typeof saveGame.piePerClickCost !== "undefined") gameData.piePerClickCost = saveGame.piePerClickCost;
+if (typeof saveGame.chefCost !== "undefined") gameData.chefCost = saveGame.chefCost;
+if (typeof saveGame.piePerSecond !== "undefined") gameData.piePerSecond = saveGame.piePerSecond;
 if (typeof saveGame.lastTick !== "undefined") gameData.lastTick = saveGame.lastTick;
