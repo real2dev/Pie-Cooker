@@ -39,6 +39,7 @@ var mainGameLoop = window.setInterval(function() {
   gameData.pie += gameData.piePerSecond * (diff / 1000); // divide diff by how often (ms) mainGameLoop is ran
   document.getElementById("pieCooked").innerHTML = format(gameData.pie, "engineering") + " Pies Cooked";
   document.getElementById("perClickUpgrade").innerHTML = "Upgrade Oven (Currently Level " + format(gameData.piePerClick, "engineering") + ") Cost: " + format(gameData.piePerClickCost, "engineering") + " Pie";
+  document.getElementById("buyChef").innerHTML = "Buy A Chef (Currently Have:  " + format(gameData.piePerSecond, "engineering") + ") Cost: " + format(gameData.chefCost, "engineering") + " Pies"
 }, 1000);
 
 var saveGameLoop = window.setInterval(function() {
