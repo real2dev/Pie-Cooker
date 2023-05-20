@@ -1,23 +1,23 @@
-var saveGame = localStorage.getItem('pieCookerSave');
+var saveGame = localStorage.getItem('pieCookerSave')
 var gameData = {
   pie: 0,
   piePerClick: 1,
   piePerClickCost: 10,
   lastTick: Date.now()
-};
+}
 
 function cookPie() {
-  gameData.pie += gameData.piePerClick;
-  document.getElementById("pieCooked").innerHTML = format(gameData.pie) + " Pies Cooked";
+  gameData.pie += gameData.piePerClick
+  document.getElementById("pieCooked").innerHTML = format(gameData.pie, "scientific") + " Pies Cooked"
 }
 
 function buyPiePerClick() {
   if (gameData.pie >= gameData.piePerClickCost) {
-    gameData.pie -= gameData.piePerClickCost;
-    gameData.piePerClick += 1;
-    gameData.piePerClickCost *= 2;
-    document.getElementById("pieCooked").innerHTML = format(gameData.pie) + " Pies Cooked";
-    document.getElementById("perClickUpgrade").innerHTML = "Upgrade Oven (Currently Level " + format(gameData.piePerClick) + ") Cost: " + format(gameData.piePerClickCost) + " Pie";
+    gameData.pie -= gameData.piePerClickCost
+    gameData.piePerClick += 1
+    gameData.piePerClickCost *= 2
+    document.getElementById("pieCooked").innerHTML = format(gameData.pie, "scientific") + " Pies Cooked"
+    document.getElementById("perClickUpgrade").innerHTML = "Upgrade Oven (Currently Level " + format(gameData.piePerClick, "scientific") + ") Cost: " + format(gameData.piePerClickCost, "scientific") + " Pie"
   }
 }
 
@@ -25,24 +25,26 @@ var mainGameLoop = window.setInterval(function() {
   var diff = Date.now() - gameData.lastTick;
   gameData.lastTick = Date.now(); // Don't forget to update lastTick.
   gameData.pie += gameData.piePerClick * (diff / 1000); // divide diff by how often (ms) mainGameLoop is ran
-  document.getElementById("pieCooked").innerHTML = format(gameData.pie) + " Pies Cooked";
+  document.getElementById("pieCooked").innerHTML = format(gameData.pie, "scientific") + " Pies Cooked";
 }, 1000);
 
 var saveGameLoop = window.setInterval(function() {
   localStorage.setItem("pieCookerSave", JSON.stringify(gameData));
 }, 15000);
 
-var savegame = JSON.parse(localStorage.getItem("pieCookerSave"));
-if (savegame !== null) {
-  gameData = savegame;
+var saveGame = JSON.parse(localStorage.getItem("pieCookerSave"));
+if (saveGame !== null) {
+  gameData = saveGame;
 }
 
-function format(number) {
-  var exponent = Math.floor(Math.log10(number));
-  var mantissa = number / Math.pow(10, exponent);
+function format(number, type) {
+  let exponent = Math.floor(Math.log10(number));
+  let mantissa = number / Math.pow(10, exponent);
   if (exponent < 3) return number.toFixed(0);
-  return mantissa.toFixed(2) + "e" + exponent;
+  if (type == "scientific") return mantissa.toFixed(2) + "e" + exponent;
+  if (type == "engineering") return (Math.pow(10, exponent % 3) * mantissa).toFixed(2) + "e" + (Math.floor(exponent / 3) * 3);
 }
+
 
 function tab(tab) {
   // hide all your tabs, then show the one the user selected.
