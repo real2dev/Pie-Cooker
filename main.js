@@ -73,9 +73,11 @@ function tab(tab) {
 // go to a tab for the first time, so not all show
 tab("cookPieMenu");
 
-if (typeof saveGame.pie !== "undefined") gameData.pie = saveGame.pie;
-if (typeof saveGame.piePerClick !== "undefined") gameData.piePerClick = saveGame.piePerClick;
-if (typeof saveGame.piePerClickCost !== "undefined") gameData.piePerClickCost = saveGame.piePerClickCost;
-if (typeof saveGame.chefCost !== "undefined") gameData.chefCost = saveGame.chefCost;
-if (typeof saveGame.piePerSecond !== "undefined") gameData.piePerSecond = saveGame.piePerSecond;
-if (typeof saveGame.lastTick !== "undefined") gameData.lastTick = saveGame.lastTick;
+if (saveGame !== null) {
+  if (typeof saveGame.pie !== "undefined") gameData.pie = saveGame.pie;
+  if (typeof saveGame.piePerClick !== "undefined") gameData.piePerClick = saveGame.piePerClick;
+  if (typeof saveGame.piePerClickCost !== "undefined") gameData.piePerClickCost = saveGame.piePerClickCost;
+  if (typeof saveGame.chefCost !== "undefined") gameData.chefCost = saveGame.chefCost;
+  if (typeof saveGame.piePerSecond !== "undefined") gameData.piePerSecond = saveGame.piePerSecond;
+  if (typeof saveGame.lastTick !== "undefined") gameData.lastTick = saveGame.lastTick;
+}
