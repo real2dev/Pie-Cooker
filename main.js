@@ -14,20 +14,20 @@ function cookPie() {
 }
 
 function buyPiePerClick() {
-  if (gameData.pie >= gameData.piePerClickCost) {
-    gameData.pie -= gameData.piePerClickCost
+  if (gameData.pie >= 10*(1.5**gameData.piePerClick)) {
+    gameData.pie -= 10*(1.5**gameData.piePerClick)
+    gameData.piePerClickCost = 10*(1.5**gameData.piePerClick)
     gameData.piePerClick += 1
-    gameData.piePerClickCost *= 2
     document.getElementById("pieCooked").innerHTML = format(gameData.pie, "engineering") + " Pies Cooked"
     document.getElementById("perClickUpgrade").innerHTML = "Upgrade Oven (Currently Level " + format(gameData.piePerClick, "engineering") + ") Cost: " + format(gameData.piePerClickCost, "engineering") + " Pies"
   }
 }
 
 function buyChef() {
-  if (gameData.pie >= gameData.chefCost) {
-    gameData.pie -= gameData.chefCost
+  if (gameData.pie >= 10*(2**gameData.chefCost)) {
+    gameData.pie -= 10*(2**gameData.chefCost)
+    gameData.chefCost = 10*(2**gameData.piePerSecond)
     gameData.piePerSecond += 1
-    gameData.chefCost *= 2.5
     document.getElementById("pieCooked").innerHTML = format(gameData.pie, "engineering") + " Pies Cooked"
     document.getElementById("buyChef").innerHTML = "Buy A Chef (Currently Have:  " + format(gameData.piePerSecond, "engineering") + ") Cost: " + format(gameData.chefCost, "engineering") + " Pies"
   }
