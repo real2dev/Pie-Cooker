@@ -40,6 +40,8 @@ var mainGameLoop = window.setInterval(function() {
   document.getElementById("pieCooked").innerHTML = format(gameData.pie, "engineering") + " Pies Cooked";
   document.getElementById("perClickUpgrade").innerHTML = "Upgrade Oven (Currently Level " + format(gameData.piePerClick, "engineering") + ") Cost: " + format(gameData.piePerClickCost, "engineering") + " Pie";
   document.getElementById("buyChef").innerHTML = "Buy A Chef (Currently Have:  " + format(gameData.piePerSecond, "engineering") + ") Cost: " + format(gameData.chefCost, "engineering") + " Pies"
+  document.getElementById("chefAmt").innerHTML = format(gameData.piePerSecond, "engineering") + " Chefs"
+  document.getElementById("piePerCook").innerHTML = format(gamedata.piePerClick, "engineering") + " Pies Per Click"
 }, 1000);
 
 var saveGameLoop = window.setInterval(function() {
