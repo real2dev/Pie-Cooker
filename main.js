@@ -26,7 +26,7 @@ var mainGameLoop = window.setInterval(function() {
   gameData.lastTick = Date.now(); // Don't forget to update lastTick.
   gameData.pie += gameData.piePerClick * (diff / 1000); // divide diff by how often (ms) mainGameLoop is ran
   document.getElementById("pieCooked").innerHTML = format(gameData.pie, "engineering") + " Pies Cooked";
-  document.getElementById("perClickUpgrade").innerHTML = "Upgrade Oven (Currently Level " + format(gameData.piePerClick, "scientific") + ") Cost: " + format(gameData.piePerClickCost, "scientific") + " Pie";
+  document.getElementById("perClickUpgrade").innerHTML = "Upgrade Oven (Currently Level " + format(gameData.piePerClick, "engineering") + ") Cost: " + format(gameData.piePerClickCost, "scientific") + " Pie";
 }, 1000);
 
 var saveGameLoop = window.setInterval(function() {
