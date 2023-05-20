@@ -17,7 +17,7 @@ function buyPiePerClick() {
     gameData.piePerClick += 1;
     gameData.piePerClickCost *= 2;
     document.getElementById("pieCooked").innerHTML = format(gameData.pie) + " Pies Cooked";
-    document.getElementById("perClickUpgrade").innerHTML = "Upgrade Oven (Currently Level " + format(gameData.piePerClick) + ") Cost: " + format(gameData.piePerClickCost) + " Pies";
+    document.getElementById("perClickUpgrade").innerHTML = "Upgrade Oven (Currently Level " + format(gameData.piePerClick) + ") Cost: " + format(gameData.piePerClickCost) + " Pie";
   }
 }
 
