@@ -6,8 +6,16 @@
   </head>
   <body>
     <p id="pieCooked">0 Pies Cooked</p>
-    <button onclick="cookPie()">Cook Pie</button>
-    <button onclick="buyPiePerClick()" id="perClickUpgrade">Upgrade Oven (Currently Level 1) Cost: 10 Pie</button>
+    <div id="navigateButtons">
+      <button onclick="tab('cookPieMenu')">Go to Pie Oven</button>
+      <button onclick="tab('shopMenu')">Go to Shop</button>
+    </div>
+    <div id="cookPieMenu">
+      <button onclick="cookPie()">Cook Pie</button>
+    </div>
+    <div id="shopMenu">
+      <button onclick="buyPiePerClick()" id="perClickUpgrade">Upgrade Oven (Currently Level 1) Cost: 10 Pies</button>
+    </div>
     <script src="main.js" charset="utf-8" type="text/javascript"></script>
   </body>
 </html>
