@@ -1,44 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SkyAPI Example</title>
+  <title>The Pie Game</title>
+  <strong>The Pie Game</strong>
 </head>
 <body>
-  <label for="Username">Username:</label>
-  <input type="text" id="usernameCoins">
-  
-  <label for="Profile">Profile:</label>
-  <input type="text" id="profileCoins">
-
-  <button onclick="fetchData()">Submit</button>
-
-  <div id="output"></div>
-
-  <script>
-    function fetchData() {
-      var username = document.getElementById("usernameCoins").value;
-      var profile = document.getElementById("profileCoins").value;
-
-      var apiUrl = `https://sky.shiiyu.moe/api/v2/coins/${username}/${profile}`;
-
-      fetch(apiUrl)
-        .then(response => {
-          var statusCode = response.status;
-          document.getElementById("output").textContent = "Response Code: " + statusCode;
-
-          return response.json();
-        })
-        .then(data => {
-          console.log("API Response:", data);
-          document.getElementById("output").textContent += "\nResponse Data: " + JSON.stringify(data);
-          // Handle the API response data as needed
-        })
-        .catch(error => {
-          console.error("Error:", error);
-          document.getElementById("output").textContent = "Error: " + error;
-          // Handle any errors that occur during the API request
-        });
-    }
-  </script>
+<button type="button" name="pieButton">
+	Cook Pie
+</button>
 </body>
 </html>
