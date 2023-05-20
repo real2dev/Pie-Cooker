@@ -2,7 +2,6 @@ var gameData = {
   pie: 0,
   piePerClick: 1,
   piePerClickCost: 10,
-  update: 1.0.1
 }
 
 function cookPie() {
@@ -19,10 +18,6 @@ function buyPiePerClick() {
     document.getElementById("perClickUpgrade").innerHTML = "Upgrade Oven (Currently Level " + gameData.piePerClick + ") Cost: " + gameData.piePerClickCost + " Pie"
   }
 }
-
-var mainGameLoop = window.setInterval(function() {
-  cookPie()
-}, 1000)
 
 var saveGameLoop = window.setInterval(function() {
   document.getElementById("version").innerHTMl = "Version: " + gameData.update
