@@ -54,12 +54,13 @@ function tab(tab) {
   // hide all your tabs, then show the one the user selected.
   document.getElementById("cookPieMenu").style.display = "none";
   document.getElementById("shopMenu").style.display = "none";
+  document.getElementById("donateMenu").style.display = "none";
   document.getElementById(tab).style.display = "inline-block";
 }
 // go to a tab for the first time, so not all show
 tab("cookPieMenu");
 
-if (typeof savegame.pie !== "undefined") gameData.pie = savegame.pie;
-if (typeof savegame.piePerClick !== "undefined") gameData.piePerClick = savegame.piePerClick;
-if (typeof savegame.piePerClickCost !== "undefined") gameData.piePerClickCost = savegame.piePerClickCost;
-if (typeof savegame.lastTick !== "undefined") gameData.lastTick = savegame.lastTick;
+if (typeof saveGame.pie !== "undefined") gameData.pie = saveGame.pie;
+if (typeof saveGame.piePerClick !== "undefined") gameData.piePerClick = saveGame.piePerClick;
+if (typeof saveGame.piePerClickCost !== "undefined") gameData.piePerClickCost = saveGame.piePerClickCost;
+if (typeof saveGame.lastTick !== "undefined") gameData.lastTick = saveGame.lastTick;
