@@ -20,7 +20,6 @@ function buyPiePerClick() {
 }
 
 var saveGameLoop = window.setInterval(function() {
-  document.getElementById("version").innerHTMl = "Version: " + gameData.update
   localStorage.setItem("pieMinerSave", JSON.stringify(gameData))
 }, 15000)
 
