@@ -5,6 +5,7 @@ var gameData = {
   piePerClickCost: 10,
   piePerSecond: 0,
   chefCost: 10,
+  version: 1.0.2,
   lastTick: Date.now()
 }
 
@@ -39,9 +40,10 @@ var mainGameLoop = window.setInterval(function() {
   gameData.pie += gameData.piePerSecond * (diff / 1000); // divide diff by how often (ms) mainGameLoop is ran
   document.getElementById("pieCooked").innerHTML = format(gameData.pie, "engineering") + " Pies Cooked";
   document.getElementById("perClickUpgrade").innerHTML = "Upgrade Oven (Currently Level " + format(gameData.piePerClick, "engineering") + ") Cost: " + format(gameData.piePerClickCost, "engineering") + " Pie";
-  document.getElementById("buyChef").innerHTML = "Buy A Chef (Currently Have:  " + format(gameData.piePerSecond, "engineering") + ") Cost: " + format(gameData.chefCost, "engineering") + " Pies"
-  document.getElementById("chefAmt").innerHTML = format(gameData.piePerSecond, "engineering") + " Chefs"
-  document.getElementById("piePerCook").innerHTML = format(gameData.piePerClick, "engineering") + " Pies Per Click"
+  document.getElementById("buyChef").innerHTML = "Buy A Chef (Currently Have:  " + format(gameData.piePerSecond, "engineering") + ") Cost: " + format(gameData.chefCost, "engineering") + " Pies";
+  document.getElementById("chefAmt").innerHTML = format(gameData.piePerSecond, "engineering") + " Chefs";
+  document.getElementById("piePerCook").innerHTML = format(gameData.piePerClick, "engineering") + " Pies Per Click";
+  document.getElementById("versTag").innerHTML = "Version: " + format(gameData.version, "engineering");
 }, 1000);
 
 var saveGameLoop = window.setInterval(function() {
