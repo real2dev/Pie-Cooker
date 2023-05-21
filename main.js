@@ -24,10 +24,10 @@ function buyPiePerClick() {
 }
 
 function buyChef() {
-  if (gameData.pie >= 10*(2**gameData.chefCost)) {
-    gameData.pie -= 10*(2**gameData.chefCost)
-    gameData.chefCost = 10*(2**gameData.piePerSecond)
+  if (gameData.pie >= *gameData.chefCost {
+    gameData.pie -= gameData.chefCost
     gameData.piePerSecond += 1
+    gameData.chefCost = 10*(2**gameData.piePerSecond)
     document.getElementById("pieCooked").innerHTML = format(gameData.pie, "engineering") + " Pies Cooked"
     document.getElementById("buyChef").innerHTML = "Buy A Chef (Currently Have:  " + format(gameData.piePerSecond, "engineering") + ") Cost: " + format(gameData.chefCost, "engineering") + " Pies"
   }
