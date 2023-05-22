@@ -55,7 +55,7 @@ var mainGameLoop = window.setInterval(function() {
   document.getElementById("pieCooked").innerHTML = format(gameData.pie, "engineering") + " Pies Cooked";
   document.getElementById("perClickUpgrade").innerHTML = "Upgrade Oven (Currently Level " + format(gameData.piePerClick, "engineering") + ") Cost: " + format(gameData.piePerClickCost, "engineering") + " Pie";
   document.getElementById("buyChef").innerHTML = "Buy A Chef (Currently Have:  " + format(gameData.piePerSecond, "engineering") + ") Cost: " + format(gameData.chefCost, "engineering") + " Pies";
-  document.getElementById("chefAmt").innerHTML = format(gameData.piePerSecond, "engineering") + " Chefs";
+  document.getElementById("chefAmt").innerHTML = format(gameData.chefAmt, "engineering") + " Chefs";
   document.getElementById("piePerCook").innerHTML = format(gameData.piePerClick, "engineering") + " Pies Per Click";
 }, 1000);
 
@@ -96,6 +96,9 @@ if (saveGame !== null) {
   if (typeof saveGame.piePerClick !== "undefined") gameData.piePerClick = saveGame.piePerClick;
   if (typeof saveGame.piePerClickCost !== "undefined") gameData.piePerClickCost = saveGame.piePerClickCost;
   if (typeof saveGame.chefCost !== "undefined") gameData.chefCost = saveGame.chefCost;
+  if (typeof saveGame.kitchenCost !== "undefined") gameData.kitchenCost = saveGame.kitchenCost;
+  if (typeof saveGame.kitchenAmt !== "undefined") gameData.kitchenAmt = saveGame.kitchenAmt;
+  if (typeof saveGame.chefAmt !== "undefined") gameData.chefAmt = saveGame.chefAmt;
   if (typeof saveGame.piePerSecond !== "undefined") gameData.piePerSecond = saveGame.piePerSecond;
   if (typeof saveGame.lastTick !== "undefined") gameData.lastTick = saveGame.lastTick;
 }
