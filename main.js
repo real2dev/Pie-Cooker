@@ -42,7 +42,7 @@ function buyKitchen() {
     gameData.pie -= gameData.kitchenCost;
     gameData.piePerSecond += 5;
     gameData.kitchenAmt += 1;
-    gameData.kitchenCost = 25 * (1.5 ** gameData.kitchenAmt);
+    gameData.kitchenCost = 100 * (1.5 ** gameData.kitchenAmt);
     document.getElementById("pieCooked").innerHTML = format(gameData.pie, "engineering") + " Pies Cooked";
     document.getElementById("buyKitchen").innerHTML = "Buy A Kitchen (Currently Have:  " + format(gameData.kitchenAmt, "engineering") + ") Cost: " + format(gameData.kitchenCost, "engineering") + " Pies";
   }
