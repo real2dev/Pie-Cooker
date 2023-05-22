@@ -5,7 +5,10 @@ var gameData = {
   piePerClickCost: 10,
   piePerSecond: 0,
   chefCost: 10,
-  lastTick: Date.now()
+  kitchenCost: 100,
+  chefAmt: 0,
+  kitchenAmt: 0,
+  lastTick: Date.now(),
 }
 
 function cookPie() {
@@ -27,9 +30,21 @@ function buyChef() {
   if (gameData.pie >= gameData.chefCost) {
     gameData.pie -= gameData.chefCost;
     gameData.piePerSecond += 1;
-    gameData.chefCost = 15 * (1.5 ** gameData.piePerSecond);
+    gameData.chefAmt += 1;
+    gameData.chefCost = 15 * (1.5 ** gameData.chefAmt);
     document.getElementById("pieCooked").innerHTML = format(gameData.pie, "engineering") + " Pies Cooked";
-    document.getElementById("buyChef").innerHTML = "Buy A Chef (Currently Have:  " + format(gameData.piePerSecond, "engineering") + ") Cost: " + format(gameData.chefCost, "engineering") + " Pies";
+    document.getElementById("buyChef").innerHTML = "Buy A Chef (Currently Have:  " + format(gameData.chefAmt, "engineering") + ") Cost: " + format(gameData.chefCost, "engineering") + " Pies";
+  }
+}
+
+function buyKitchen() {
+  if (gameData.pie >= gameData.kitchenCost) {
+    gameData.pie -= gameData.kitchenCost;
+    gameData.piePerSecond += 5;
+    gameData.kitchenAmt += 1;
+    gameData.kitchenCost = 25 * (1.5 ** gameData.kitchenAmt);
+    document.getElementById("pieCooked").innerHTML = format(gameData.pie, "engineering") + " Pies Cooked";
+    document.getElementById("buyKitchen").innerHTML = "Buy A Kitchen (Currently Have:  " + format(gameData.kitchenAmt, "engineering") + ") Cost: " + format(gameData.kitchenCost, "engineering") + " Pies";
   }
 }
 
