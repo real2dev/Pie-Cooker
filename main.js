@@ -57,6 +57,7 @@ var mainGameLoop = window.setInterval(function() {
   document.getElementById("buyChef").innerHTML = "Buy A Chef (Currently Have:  " + format(gameData.piePerSecond, "engineering") + ") Cost: " + format(gameData.chefCost, "engineering") + " Pies";
   document.getElementById("chefAmt").innerHTML = format(gameData.chefAmt, "engineering") + " Chefs";
   document.getElementById("piePerCook").innerHTML = format(gameData.piePerClick, "engineering") + " Pies Per Click";
+  document.getElementById("buyKitchen").innerHTML = "Buy A Kitchen (Currently Have: " + gameData.kitchenAmt ") Cost: " + gameData.kitchenCost;
 }, 1000);
 
 var saveGameLoop = window.setInterval(function() {
