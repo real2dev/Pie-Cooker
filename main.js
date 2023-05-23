@@ -60,7 +60,7 @@ const mainGameLoop = window.setInterval(() => {
   document.getElementById('buyKitchen').style.display = 'none';
   document.getElementById('buyKitchen').innerHTML = `Buy A Kitchen (Currently Have: ${format(gameData.kitchenAmt, 'engineering')}) Cost: ${format(gameData.kitchenCost, 'engineering')}`;
   if (piePerSecond > 10) {
-      document.getElementById('buyKitchen').removeProperty('display');
+      document.getElementById('buyKitchen').style.display = 'inline';
  }    
 }, 1000);
 
