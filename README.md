@@ -1,4 +1,4 @@
-![Logo](https://i.ibb.co/Nj6rbLz/New-Project.png)
+![Logo](https://i.postimg.cc/SKNbrJsJ/New-Project.png)
 
 
 ## FAQ
