@@ -2,7 +2,7 @@ var saveGame = localStorage.getItem('pieCookerSave');
 let gameData = {
   pie: 0,
   piePerClick: 1,
-  piePerClickCost: 10 * (1.5 ** gameData.piePerClick),
+  piePerClickCost: 10,
   piePerSecond: 0,
   chefCost: 10,
   kitchenCost: 100,
@@ -27,8 +27,8 @@ function cookPie() {
 
 function buyPiePerClick() {
   if (gameData.pie >= 10 * (1.5 ** gameData.piePerClick)) {
-    gameData.pie -= 10 * (1.5 ** gameData.piePerClick);
     gameData.piePerClickCost = 10 * (1.5 ** gameData.piePerClick);
+    gameData.pie -= 10 * (1.5 ** gameData.piePerClick);
     gameData.piePerClick += 1;
     document.getElementById('pieCooked').innerHTML = `${format(gameData.pie, 'engineering')} Pies Cooked`;
     document.getElementById('perClickUpgrade').innerHTML = `Upgrade Oven (Currently Level ${format(gameData.piePerClick, 'engineering')}) Cost: ${format(gameData.piePerClickCost, 'engineering')} Pies`;
