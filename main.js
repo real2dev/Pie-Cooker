@@ -15,7 +15,7 @@ function upgrade(amount, variable, price, id) {
   if (gameData.pie >= price) {
     gameData.pie -= price
     gameData.piePerSecond *= amount 
-    document.getElementById(id).style.display = 'none'
+    document.getElementById("'"+id+"'").style.display = 'none'
   }
 }
 
