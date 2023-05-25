@@ -15,7 +15,7 @@
     <div id="navigateButtons">
       <button onclick="tab('cookPieMenu')">Go to Pie Oven</button>
       <button onclick="tab('shopMenu')">Go to Shop</button>
-      <button onclick="tab('rebirthMenu')">Go To Rebirths</button>
+      <button onclick="tab('upgradeMenu')">Go To Upgrades</button>
       <button onclick="tab('donateMenu')">Donate</button>
     </div>
     <div id="cookPieMenu">
@@ -25,6 +25,9 @@
       <button onclick="buyPiePerClick()" id="perClickUpgrade">Upgrade Oven (Currently Level 1) Cost: 10 Pies</button>
       <button onclick="buyChef()" id="buyChef">Buy A Chef (Currently Have: 0) Cost: 10 Pies</button>
       <button onclick="buyKitchen()" id="buyKitchen">Buy A Kitchen (Currently Have: 0) Cost: 100 Pies</button>
+    </div>
+    <div id="upgradeMenu">
+      <button onclick="upgrade(2, piePerSecond)" id="upgrade1">Mass Purchase Organic Fruits (x2 Pie Per Second)</button>
     </div>
     <div id="donateMenu">
       <form action="https://www.paypal.com/donate" method="post" target="_top">
