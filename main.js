@@ -26,7 +26,7 @@ function cookPie() {
 }
 
 function buyPiePerClick() {
-  if (gameData.pie >= 10 * (1.5 ** gameData.piePerClick)) {
+  if (gameData.pie >= gameData.piePerClickCost) {
     gameData.piePerClickCost = 10 * (1.5 ** gameData.piePerClick);
     gameData.pie -= 10 * (1.5 ** gameData.piePerClick);
     gameData.piePerClick += 1;
