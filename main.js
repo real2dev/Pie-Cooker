@@ -27,8 +27,8 @@ function cookPie() {
 
 function buyPiePerClick() {
   if (gameData.pie >= gameData.piePerClickCost) {
+    gameData.pie -= gameData.piePerClickCost);
     gameData.piePerClickCost = 10 * (1.5 ** gameData.piePerClick);
-    gameData.pie -= 10 * (1.5 ** gameData.piePerClick);
     gameData.piePerClick += 1;
     document.getElementById('pieCooked').innerHTML = `${format(gameData.pie, 'engineering')} Pies Cooked`;
     document.getElementById('perClickUpgrade').innerHTML = `Upgrade Oven (Currently Level ${format(gameData.piePerClick, 'engineering')}) Cost: ${format(gameData.piePerClickCost, 'engineering')} Pies`;
