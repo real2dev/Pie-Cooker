@@ -14,7 +14,7 @@ let gameData = {
 function upgrade(amount, variable, price) {
   if (gameData.pie >= price) {
     gameData.pie -= price
-    gameData.{variable} *= amount 
+    gameData.piePerSecond *= amount 
   }
 }
 
