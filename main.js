@@ -2,7 +2,7 @@ var saveGame = localStorage.getItem('pieCookerSave');
 let gameData = {
   pie: 0,
   piePerClick: 1,
-  piePerClickCost: 10,
+  piePerClickCost: 10 * (1.5 ** gameData.piePerClick),
   piePerSecond: 0,
   chefCost: 10,
   kitchenCost: 100,
