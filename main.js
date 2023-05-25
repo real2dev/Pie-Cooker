@@ -11,6 +11,14 @@ let gameData = {
   lastTick: Date.now(),
 };
 
+function upgrade(amount, variable, price) {
+  if gameData.pie >= price {
+    gameData.pie -= price
+    gameData.variable *= amount 
+  }
+}
+
+
 function cookPie() {
   gameData.pie += gameData.piePerClick;
   document.getElementById('pieCooked').innerHTML = `${format(gameData.pie, 'engineering')} Pies Cooked`;
