@@ -12,7 +12,7 @@ let gameData = {
 };
 
 function upgrade(amount, variable, price) {
-  if gameData.pie >= price {
+  if (gameData.pie >= price) {
     gameData.pie -= price
     gameData.variable *= amount 
   }
@@ -96,6 +96,7 @@ function format(number, type) {
 
 function tab(tab) {
   // hide all your tabs, then show the one the user selected.
+  document.getElementById('upgradeMenu').style.display = 'none';
   document.getElementById('cookPieMenu').style.display = 'none';
   document.getElementById('shopMenu').style.display = 'none';
   document.getElementById('donateMenu').style.display = 'none';
