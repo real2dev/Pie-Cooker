@@ -11,10 +11,11 @@ let gameData = {
   lastTick: Date.now(),
 };
 
-function upgrade(amount, variable, price) {
+function upgrade(amount, variable, price, id) {
   if (gameData.pie >= price) {
     gameData.pie -= price
     gameData.piePerSecond *= amount 
+    document.getElementById(id).style.display = 'none'
   }
 }
 
