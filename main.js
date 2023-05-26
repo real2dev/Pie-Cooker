@@ -8,12 +8,14 @@ let gameData = {
   kitchenCost: 100,
   chefAmt: 0,
   kitchenAmt: 0,
+  upgradesBought: 0,
   lastTick: Date.now(),
 };
 
 function upgrade(amount, variable, price, id) {
   if (gameData.pie >= price) {
     gameData.pie -= price
+    gameData.upgradesBought += 1
     gameData.piePerSecond *= amount 
     document.getElementById("'"+id+"'").style.display = 'none'
   }
