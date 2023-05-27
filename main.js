@@ -17,7 +17,7 @@ function upgrade(amount, variable, price, id) {
     gameData.pie -= price
     gameData.upgradesBought += 1
     gameData.piePerSecond *= amount 
-    document.getElementById("'"+id+"'").style.display = 'none'
+    document.getElementById(id).style.display = 'none'
   }
 }
 
