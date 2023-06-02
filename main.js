@@ -81,7 +81,7 @@ function buyPiePerClick() {
     gameData.piePerClickCost = 10 * (1.5 ** gameData.piePerClick);
     gameData.piePerClick += 1;
     document.getElementById('pieCooked').innerHTML = `${format(gameData.pie, 'engineering')} Pies Cooked`;
-    document.getElementById('perClickUpgrade').innerHTML = `Upgrade Oven (Currently Level ${format(gameData.piePerClick, 'engineering')}) Cost: ${format(gameData.piePerClickCost, 'engineering')} Pies`;
+    document.getElementById('perClickUpgrade').innerHTML = `Upgrade Oven (Currently Level ${format(gameData.piePerClick, 'engineering')}) Cost: ${format(gameData.piePerClickCost, 'engineering')}) Pies`;
   }
 }
 
@@ -126,12 +126,12 @@ const mainGameLoop = window.setInterval(() => {
   if (gameData.piePerSecond > 10) {
       document.getElementById('buyKitchen').style.display = 'inline';
  }    
-if (gameData.piePerSecond > 10) and (gameData.upgradeAmount < 1) {
-      show('upgrade1')
- } 
-if (gameData.piePerSecond > 25) and (gameData.upgradeAmount < 2) {
-      show('upgrade2')
- } 
+if (gameData.piePerSecond > 10 && gameData.upgradeAmount < 1) {
+  show('upgrade1');
+}
+if (gameData.piePerSecond > 25 && gameData.upgradeAmount < 2) {
+  show('upgrade2');
+}
   checkupgrade(1)
   checkupgrade(2)
 }, 1000);
