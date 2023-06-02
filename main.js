@@ -1,3 +1,5 @@
+// Main Game Data Storage
+
 var saveGame = localStorage.getItem('pieCookerSave');
 let gameData = {
   pie: 0,
@@ -12,15 +14,41 @@ let gameData = {
   lastTick: Date.now(),
 };
 
+// Formatting / Non-Game Functions
+
+function tab(tab) {
+  document.getElementById('upgradeMenu').style.display = 'none';
+  document.getElementById('cookPieMenu').style.display = 'none';
+  document.getElementById('shopMenu').style.display = 'none';
+  document.getElementById('donateMenu').style.display = 'none';
+  document.getElementById(tab).style.display = 'inline-block';
+}
+tab('cookPieMenu');
+
+function hide(element) {
+  document.getElementById(element).style.display = 'none';
+}
+
+function show(element) {
+  document.getElementById(element).style.display = 'inline';
+}
+
+function checkdata(dataid) {
+  if (typeof saveGame[dataid] !== 'undefined') {
+    gameData[dataid] = saveGame[dataid];
+  }
+}
+
+// In Game Functions
+
 function upgrade(amount, variable, price, id) {
   if (gameData.pie >= price) {
     gameData.pie -= price
     gameData.upgradesBought += 1
     gameData.piePerSecond *= amount 
-    document.getElementById(id).style.display = 'none'
+    hide(id)
   }
 }
-
 
 function cookPie() {
   gameData.pie += gameData.piePerClick;
@@ -58,6 +86,8 @@ function buyKitchen() {
     document.getElementById('buyKitchen').innerHTML = `Buy A Kitchen (Currently Have:  ${format(gameData.kitchenAmt, 'engineering')}) Cost: ${format(gameData.kitchenCost, 'engineering')} Pies`;
   }
 }
+
+// Main Game Data Control
 
 const mainGameLoop = window.setInterval(() => {
   const diff = Date.now() - gameData.lastTick;
@@ -97,25 +127,8 @@ function format(number, type) {
   }
 }
 
-function tab(tab) {
-  // hide all your tabs, then show the one the user selected.
-  document.getElementById('upgradeMenu').style.display = 'none';
-  document.getElementById('cookPieMenu').style.display = 'none';
-  document.getElementById('shopMenu').style.display = 'none';
-  document.getElementById('donateMenu').style.display = 'none';
-  document.getElementById(tab).style.display = 'inline-block';
-}
-// go to a tab for the first time, so not all show
-tab('cookPieMenu');
-
 if (saveGame !== null) {
-  if (typeof saveGame.pie !== 'undefined') gameData.pie = saveGame.pie;
-  if (typeof saveGame.piePerClick !== 'undefined') gameData.piePerClick = saveGame.piePerClick;
-  if (typeof saveGame.piePerClickCost !== 'undefined') gameData.piePerClickCost = saveGame.piePerClickCost;
-  if (typeof saveGame.chefCost !== 'undefined') gameData.chefCost = saveGame.chefCost;
-  if (typeof saveGame.kitchenCost !== 'undefined') gameData.kitchenCost = saveGame.kitchenCost;
-  if (typeof saveGame.kitchenAmt !== 'undefined') gameData.kitchenAmt = saveGame.kitchenAmt;
-  if (typeof saveGame.chefAmt !== 'undefined') gameData.chefAmt = saveGame.chefAmt;
-  if (typeof saveGame.piePerSecond !== 'undefined') gameData.piePerSecond = saveGame.piePerSecond;
-  if (typeof saveGame.lastTick !== 'undefined') gameData.lastTick = saveGame.lastTick;
+  for (let property in gameData) {
+    checkdata(property);
+  }
 }
