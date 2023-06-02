@@ -66,7 +66,7 @@ function buyBuilding(name, ppsamt, amt, baseformula, realName) {
     gameData.piePerSecond += ppsamt;
     gameData[name + 'Cost'] = baseformula * (1.5 ** gameData[name + 'Amt']);
     document.getElementById('pieCooked').innerHTML = `${format(gameData.pie, 'engineering')} Pies Cooked`;
-    document.getElementById('buy${name}').innerHTML = `Buy A ${realName} (Currently Have: ${format(gameData[name + 'Amt']], 'engineering')}) Cost: ${format(gameData[name + 'Cost'], 'engineering')} Pies`;
+    document.getElementById('buy${name}').innerHTML = `Buy A ${realName} (Currently Have: ${format(gameData[name + 'Amt']), 'engineering'}) Cost: ${format(gameData[name + 'Cost'], 'engineering')} Pies`;
   }
 }
 
