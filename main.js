@@ -126,10 +126,10 @@ const mainGameLoop = window.setInterval(() => {
   if (gameData.piePerSecond > 10) {
       document.getElementById('buyKitchen').style.display = 'inline';
  }    
-if (gameData.piePerSecond > 10) {
+if (gameData.piePerSecond > 10) and (gameData.upgradeAmount < 1) {
       show('upgrade1')
  } 
-if (gameData.piePerSecond > 25) {
+if (gameData.piePerSecond > 25) and (gameData.upgradeAmount < 2) {
       show('upgrade2')
  } 
   checkupgrade(1)
