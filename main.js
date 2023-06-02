@@ -25,6 +25,12 @@ function tab(tab) {
 }
 tab('cookPieMenu');
 
+function checkugrade(upgrNum) {
+  if (gameData.upgradesBought > upgrNum) {
+    hide("upgrade${upgrNum}")
+  }
+}
+
 function hide(element) {
   document.getElementById(element).style.display = 'none';
 }
@@ -117,6 +123,7 @@ const mainGameLoop = window.setInterval(() => {
   if (gameData.piePerSecond > 10) {
       document.getElementById('buyKitchen').style.display = 'inline';
  }    
+  checkupgrade(1)
 }, 1000);
 
 const saveGameLoop = window.setInterval(() => {
