@@ -109,6 +109,9 @@ function buyKitchen() {
 
 // Main Game Data Control
 
+hide('upgrade1')
+hide('upgrade2')
+
 const mainGameLoop = window.setInterval(() => {
   const diff = Date.now() - gameData.lastTick;
   gameData.lastTick = Date.now(); // Don't forget to update lastTick.
@@ -123,6 +126,9 @@ const mainGameLoop = window.setInterval(() => {
   if (gameData.piePerSecond > 10) {
       document.getElementById('buyKitchen').style.display = 'inline';
  }    
+if (gameData.piePerSecond > 10) {
+      show('upgrade1')
+ } 
 if (gameData.piePerSecond > 25) {
       show('upgrade2')
  } 
