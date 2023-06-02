@@ -123,6 +123,9 @@ const mainGameLoop = window.setInterval(() => {
   if (gameData.piePerSecond > 10) {
       document.getElementById('buyKitchen').style.display = 'inline';
  }    
+if (gameData.piePerSecond > 25) {
+      show('upgrade2')
+ } 
   checkupgrade(1)
   checkupgrade(2)
 }, 1000);
