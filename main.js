@@ -55,7 +55,7 @@ function upgrade(amount, variable, price, id) {
   if (gameData.pie >= price) {
     gameData.pie -= price
     gameData.upgradesBought += 1
-    gameData.piePerSecond *= amount 
+    gameData[variable] *= amount 
     hide(id)
   }
 }
@@ -124,6 +124,7 @@ const mainGameLoop = window.setInterval(() => {
       document.getElementById('buyKitchen').style.display = 'inline';
  }    
   checkupgrade(1)
+  checkupgrade(2)
 }, 1000);
 
 const saveGameLoop = window.setInterval(() => {
