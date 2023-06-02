@@ -39,6 +39,10 @@ function checkdata(dataid) {
   }
 }
 
+function update(id, text) {
+  document.getElementById(id).innerHTML = text
+}
+
 // In Game Functions
 
 function upgrade(amount, variable, price, id) {
@@ -47,6 +51,16 @@ function upgrade(amount, variable, price, id) {
     gameData.upgradesBought += 1
     gameData.piePerSecond *= amount 
     hide(id)
+  }
+}
+
+function buyBuilding(name, ppsamt, amt, baseformula, realName) {
+  if (gameData.pie >= gameData[name + 'Cost']) {
+    gameData.pie -= gameData[name + 'Cost'];
+    gameData.piePerSecond += ppsamt;
+    gameData[name + 'Cost'] = baseformula * (1.5 ** gameData[name + 'Amt']);
+    document.getElementById('pieCooked').innerHTML = `${format(gameData.pie, 'engineering')} Pies Cooked`;
+    document.getElementById('buy${name}').innerHTML = `Buy A ${realName} (Currently Have: ${format(gameData[name + 'Amt']], 'engineering')}) Cost: ${format(gameData[name + 'Cost'], 'engineering')} Pies`;
   }
 }
 
