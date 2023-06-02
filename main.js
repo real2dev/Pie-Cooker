@@ -25,7 +25,7 @@ function tab(tab) {
 }
 tab('cookPieMenu');
 
-function checkugrade(upgrNum) {
+function checkupgrade(upgrNum) {
   if (gameData.upgradesBought > upgrNum) {
     hide("upgrade${upgrNum}")
   }
