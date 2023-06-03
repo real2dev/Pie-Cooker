@@ -1,165 +1,144 @@
 // Main Game Data Storage
-
-var saveGame = localStorage.getItem('pieCookerSave');
+var saveGame = JSON.parse(localStorage.getItem('pieCookerSave'));
 let gameData = {
-  pie: 0,
+  pieCooked: 0,
+  piePerSecond: 0,
   piePerClick: 1,
   piePerClickCost: 10,
-  piePerSecond: 0,
-  chefCost: 10,
-  kitchenCost: 100,
   chefAmt: 0,
+  chefCost: 10,
   kitchenAmt: 0,
-  upgradesBought: 0,
-  lastTick: Date.now(),
+  kitchenCost: 100,
+  upgrade1Amt: 0,
+  upgrade1Cost: 5000,
+  upgrade2Amt: 0,
+  upgrade2Cost: 15250
 };
 
-// Formatting / Non-Game Functions
-
-function tab(tab) {
-  document.getElementById('upgradeMenu').style.display = 'none';
-  document.getElementById('cookPieMenu').style.display = 'none';
-  document.getElementById('shopMenu').style.display = 'none';
-  document.getElementById('donateMenu').style.display = 'none';
-  document.getElementById(tab).style.display = 'inline-block';
-}
-tab('cookPieMenu');
-
-function checkupgrade(upgrNum) {
-  if (gameData.upgradesBought > upgrNum) {
-    hide("upgrade${upgrNum}")
-  }
-}
-
-function hide(element) {
-  document.getElementById(element).style.display = 'none';
-}
-
-function show(element) {
-  document.getElementById(element).style.display = 'inline';
-}
-
-function checkdata(dataid) {
-  if (typeof saveGame[dataid] !== 'undefined') {
-    gameData[dataid] = saveGame[dataid];
-  }
-}
-
-function update(id, text) {
-  document.getElementById(id).innerHTML = text
-}
-
-// In Game Functions
-
-function upgrade(amount, variable, price, id) {
-  if (gameData.pie >= price) {
-    gameData.pie -= price
-    gameData.upgradesBought += 1
-    gameData[variable] *= amount 
-    hide(id)
-  }
-}
-
-function buyBuilding(name, ppsamt, amt, baseformula, realName) {
-  if (gameData.pie >= gameData[name + 'Cost']) {
-    gameData.pie -= gameData[name + 'Cost'];
-    gameData.piePerSecond += ppsamt;
-    gameData[name + 'Cost'] = baseformula * (1.5 ** gameData[name + 'Amt']);
-    document.getElementById('pieCooked').innerHTML = `${format(gameData.pie, 'engineering')} Pies Cooked`;
-    document.getElementById('buy${name}').innerHTML = `Buy A ${realName} (Currently Have: ${format(gameData[name + 'Amt']), 'engineering'}) Cost: ${format(gameData[name + 'Cost'], 'engineering')} Pies`;
-  }
-}
-
-function cookPie() {
-  gameData.pie += gameData.piePerClick;
-  document.getElementById('pieCooked').innerHTML = `${format(gameData.pie, 'engineering')} Pies Cooked`;
-}
-
-function buyPiePerClick() {
-  if (gameData.pie >= gameData.piePerClickCost) {
-    gameData.pie -= gameData.piePerClickCost; // Remove the extra closing parenthesis here
-    gameData.piePerClickCost = 10 * (1.5 ** gameData.piePerClick);
-    gameData.piePerClick += 1;
-    document.getElementById('pieCooked').innerHTML = `${format(gameData.pie, 'engineering')} Pies Cooked`;
-    document.getElementById('perClickUpgrade').innerHTML = `Upgrade Oven (Currently Level ${format(gameData.piePerClick, 'engineering')}) Cost: ${format(gameData.piePerClickCost, 'engineering')}) Pies`;
-  }
-}
-
-function buyChef() {
-  if (gameData.pie >= gameData.chefCost) {
-    gameData.pie -= gameData.chefCost;
-    gameData.piePerSecond += 1;
-    gameData.chefAmt += 1;
-    gameData.chefCost = 15 * (1.5 ** gameData.chefAmt);
-    document.getElementById('pieCooked').innerHTML = `${format(gameData.pie, 'engineering')} Pies Cooked`;
-    document.getElementById('buyChef').innerHTML = `Buy A Chef (Currently Have:  ${format(gameData.chefAmt, 'engineering')}) Cost: ${format(gameData.chefCost, 'engineering')} Pies`;
-  }
-}
-
-function buyKitchen() {
-  if (gameData.pie >= gameData.kitchenCost) {
-    gameData.pie -= gameData.kitchenCost;
-    gameData.piePerSecond += 5;
-    gameData.kitchenAmt += 1;
-    gameData.kitchenCost = 100 * (1.5 ** gameData.kitchenAmt);
-    document.getElementById('pieCooked').innerHTML = `${format(gameData.pie, 'engineering')} Pies Cooked`;
-    document.getElementById('buyKitchen').innerHTML = `Buy A Kitchen (Currently Have:  ${format(gameData.kitchenAmt, 'engineering')}) Cost: ${format(gameData.kitchenCost, 'engineering')} Pies`;
-  }
-}
-
-// Main Game Data Control
-
-hide('upgrade1')
-hide('upgrade2')
-
-const mainGameLoop = window.setInterval(() => {
-  const diff = Date.now() - gameData.lastTick;
-  gameData.lastTick = Date.now(); // Don't forget to update lastTick.
-  gameData.pie += gameData.piePerSecond * (diff / 1000); // divide diff by how often (ms) mainGameLoop is ran
-  document.getElementById('pieCooked').innerHTML = `${format(gameData.pie, 'engineering')} Pies Cooked`;
-  document.getElementById('perClickUpgrade').innerHTML = `Upgrade Oven (Currently Level ${format(gameData.piePerClick, 'engineering')}) Cost: ${format(gameData.piePerClickCost, 'engineering')} Pie`;
-  document.getElementById('buyChef').innerHTML = `Buy A Chef (Currently Have:  ${format(gameData.piePerSecond, 'engineering')}) Cost: ${format(gameData.chefCost, 'engineering')} Pies`;
-  document.getElementById('piePerSecond').innerHTML = `${format(gameData.piePerSecond, 'engineering')} Pie Per Second`;
-  document.getElementById('piePerCook').innerHTML = `${format(gameData.piePerClick, 'engineering')} Pies Per Click`;
-  document.getElementById('buyKitchen').style.display = 'none';
-  document.getElementById('buyKitchen').innerHTML = `Buy A Kitchen (Currently Have: ${format(gameData.kitchenAmt, 'engineering')}) Cost: ${format(gameData.kitchenCost, 'engineering')}`;
-  if (gameData.piePerSecond > 10) {
-      document.getElementById('buyKitchen').style.display = 'inline';
- }    
-if (gameData.piePerSecond > 10 && gameData.upgradesBought < 1) {
-  show('upgrade1');
-}
-if (gameData.piePerSecond > 25 && gameData.upgradesBought < 2) {
-  show('upgrade2');
-}
-  checkupgrade(1)
-  checkupgrade(2)
-}, 1000);
-
-const saveGameLoop = window.setInterval(() => {
-  localStorage.setItem('pieCookerSave', JSON.stringify(gameData));
-}, 15000);
-
-var saveGame = JSON.parse(localStorage.getItem('pieCookerSave'));
 if (saveGame !== null) {
   gameData = saveGame;
 }
 
-function format(number, type) {
-  const suffixes = ['', 'K', 'M', 'B', 'T'];
-  const exponent = Math.floor(Math.log10(number));
-  const mantissa = number / Math.pow(10, exponent);
+// Game Loop
+window.setInterval(function(){
+  cookPies(gameData.piePerSecond);
+}, 1000);
 
-  if (exponent < 3) return number.toFixed(0);
-  if (type == 'scientific') return `${mantissa.toFixed(2)}e${exponent}`;
+// Formatting Numbers
+function format(number, type){
   if (type == 'engineering') {
-    const suffixIndex = Math.floor(exponent / 3);
-    return (mantissa * Math.pow(10, exponent % 3)).toFixed(2) + suffixes[suffixIndex];
+    let exponent = Math.floor(Math.log10(number));
+    let mantissa = number / Math.pow(10, exponent);
+    if (exponent < 3) {
+      return Math.floor(number);
+    }
+    return mantissa.toFixed(2) + "e" + exponent;
+  }
+  return number.toLocaleString();
+}
+
+// Cook Pie Function
+function cookPies(number){
+  gameData.pieCooked += number;
+  document.getElementById('pieCooked').innerHTML = format(gameData.pieCooked, 'engineering') + " Pies Cooked";
+}
+
+// Cook Pie Button
+function cookPie(){
+  cookPies(gameData.piePerClick);
+}
+
+// Buy Pie Per Click Upgrade
+function buyPiePerClick(){
+  if (gameData.pieCooked >= gameData.piePerClickCost){
+    gameData.pieCooked -= gameData.piePerClickCost;
+    gameData.piePerClick += 1;
+    gameData.piePerClickCost *= 1.1;
+    document.getElementById('piePerCook').innerHTML = format(gameData.piePerClick, 'engineering') + " Pies Per Click";
+    document.getElementById('perClickUpgrade').innerHTML = `Upgrade Oven (Currently Level ${format(gameData.piePerClick, 'engineering')}) Cost: ${format(gameData.piePerClickCost, 'engineering')} Pies`;
   }
 }
 
-if (saveGame !== null) {
-  for (let property in gameData) {
-    checkdata(property);
+// Buy Chef Function
+function buyChef(){
+  if (gameData.pieCooked >= gameData.chefCost){
+    gameData.pieCooked -= gameData.chefCost;
+    gameData.chefAmt += 1;
+    gameData.chefCost *= 1.1;
+    document.getElementById('buyChef').innerHTML = `Buy A Chef (Currently Have: ${format(gameData.chefAmt, 'engineering')}) Cost: ${format(gameData.chefCost, 'engineering')} Pies`;
   }
 }
+
+// Buy Kitchen Function
+function buyKitchen(){
+  if (gameData.pieCooked >= gameData.kitchenCost){
+    gameData.pieCooked -= gameData.kitchenCost;
+    gameData.kitchenAmt += 1;
+    gameData.kitchenCost *= 1.1;
+    document.getElementById('buyKitchen').innerHTML = `Buy A Kitchen (Currently Have: ${format(gameData.kitchenAmt, 'engineering')}) Cost: ${format(gameData.kitchenCost, 'engineering')} Pies`;
+  }
+}
+
+// Upgrade Function
+function upgrade(upgrNum, name, cost, id){
+  if (gameData.pieCooked >= cost){
+    gameData.pieCooked -= cost;
+    gameData[name + 'Amt'] += 1;
+    cost *= 1.5;
+    hide(`upgrade${upgrNum}`);
+    document.getElementById(`buy${name}`).innerHTML = `Buy A ${realName} (Currently Have: ${format(gameData[name + 'Amt'], 'engineering')}) Cost: ${format(cost, 'engineering')} Pies`;
+  }
+}
+
+// Tab Function
+function tab(tabName){
+  hide('cookPieMenu');
+  hide('shopMenu');
+  hide('upgradeMenu');
+  hide('donateMenu');
+  show(tabName);
+}
+
+// Hide Element Function
+function hide(elementId){
+  document.getElementById(elementId).style.display = 'none';
+}
+
+// Show Element Function
+function show(elementId){
+  document.getElementById(elementId).style.display = 'block';
+}
+
+// Save Game Function
+function saveGame(){
+  localStorage.setItem('pieCookerSave', JSON.stringify(gameData));
+}
+
+// Load Game Function
+function loadGame(){
+  gameData = JSON.parse(localStorage.getItem('pieCookerSave'));
+  document.getElementById('pieCooked').innerHTML = format(gameData.pieCooked, 'engineering') + " Pies Cooked";
+  document.getElementById('piePerCook').innerHTML = format(gameData.piePerClick, 'engineering') + " Pies Per Click";
+  document.getElementById('perClickUpgrade').innerHTML = `Upgrade Oven (Currently Level ${format(gameData.piePerClick, 'engineering')}) Cost: ${format(gameData.piePerClickCost, 'engineering')} Pies`;
+  document.getElementById('buyChef').innerHTML = `Buy A Chef (Currently Have: ${format(gameData.chefAmt, 'engineering')}) Cost: ${format(gameData.chefCost, 'engineering')} Pies`;
+  document.getElementById('buyKitchen').innerHTML = `Buy A Kitchen (Currently Have: ${format(gameData.kitchenAmt, 'engineering')}) Cost: ${format(gameData.kitchenCost, 'engineering')} Pies`;
+  document.getElementById('upgrade1').innerHTML = `Mass Purchase Organic Fruits (x2 Pie Per Second) Cost: ${format(gameData.upgrade1Cost, 'engineering')} Pies`;
+  document.getElementById('upgrade2').innerHTML = `Buy Better Utensils (x2 Chef Pie Per Second) Cost: ${format(gameData.upgrade2Cost, 'engineering')} Pies`;
+}
+
+// Reset Game Function
+function resetGame(){
+  if (confirm("Are you sure you want to reset your game?")){
+    localStorage.removeItem('pieCookerSave');
+    location.reload();
+  }
+}
+
+// Event Listeners
+document.addEventListener('DOMContentLoaded', function(){
+  loadGame();
+});
+
+window.addEventListener('beforeunload', function(){
+  saveGame();
+});
