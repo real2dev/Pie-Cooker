@@ -7,7 +7,7 @@
   </head>
   <body>
     <div class="header">
-    <h1>Pie Cooker</h1>
+      <h1>Pie Cooker</h1>
     </div>
     <p id="pieCooked">0 Pies Cooked</p>
     <p id="piePerSecond">0 Pies Per Second</p>
@@ -27,19 +27,19 @@
       <button onclick="buyKitchen()" id="buyKitchen">Buy A Kitchen (Currently Have: 0) Cost: 100 Pies</button>
     </div>
     <div id="upgradeMenu">
-      <button onclick="upgrade(2, piePerSecond, 5000, 'upgrade1')" id="upgrade1">Mass Purchase Organic Fruits (x2 Pie Per Second) Cost: 5.00K Pies</button>
-      <button onclick="upgrade(3, chefAmt, 15250, 'upgrade2')" id="upgrade2">Buy Better Utensils (x2 Chef Pie Per Second) Cost: 15.25K Pies</button>
+      <button onclick="upgrade(2, 'piePerSecond', 5000, 'upgrade1')" id="upgrade1">Mass Purchase Organic Fruits (x2 Pie Per Second) Cost: 5.00K Pies</button>
+      <button onclick="upgrade(3, 'chefAmt', 15250, 'upgrade2')" id="upgrade2">Buy Better Utensils (x2 Chef Pie Per Second) Cost: 15.25K Pies</button>
     </div>
     <div id="donateMenu">
       <form action="https://www.paypal.com/donate" method="post" target="_top">
-      <input type="hidden" name="business" value="DABWDYZJ4PR4C" />
-      <input type="hidden" name="no_recurring" value="0" />
-      <input type="hidden" name="item_name" value="Donations help me make more games and keep them free with no ads. Thanks!" />
-      <input type="hidden" name="currency_code" value="USD" />
-      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-      <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+        <input type="hidden" name="business" value="DABWDYZJ4PR4C" />
+        <input type="hidden" name="no_recurring" value="0" />
+        <input type="hidden" name="item_name" value="Donations help me make more games and keep them free with no ads. Thanks!" />
+        <input type="hidden" name="currency_code" value="USD" />
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+        <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
       </form>
     </div>
-  <script src="main.js" charset="utf-8" type="text/javascript"></script>
+    <script src="main.js" charset="utf-8" type="text/javascript"></script>
   </body>
 </html>
