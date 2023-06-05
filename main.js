@@ -135,7 +135,7 @@ const mainGameLoop = window.setInterval(() => {
   }
   checkupgrade(1);
   checkupgrade(2);
-}, 1000);
+}, 250);
 
 const saveGameLoop = window.setInterval(() => {
   localStorage.setItem('pieCookerSave', JSON.stringify(gameData));
