@@ -14,10 +14,24 @@ let gameData = {
   chefAmt: 0,
   kitchenAmt: 0,
   upgradesBought: 0,
+  version: 1.0.7
   lastTick: Date.now(),
 };
 
 // Formatting / Non-Game Functions
+function format(number, type) {
+  const suffixes = ['', 'K', 'M', 'B', 'T', 'Q'];
+  const exponent = Math.floor(Math.log10(number));
+  const mantissa = number / Math.pow(10, exponent);
+
+  if (exponent < 3) return number.toFixed(0);
+  if (type == 'scientific') return `${mantissa.toFixed(2)}e${exponent}`;
+  if (type == 'engineering') {
+    const suffixIndex = Math.floor(exponent / 3);
+    return (mantissa * Math.pow(10, exponent % 3)).toFixed(2) + suffixes[suffixIndex];
+  }
+}
+
 function tab(tab) {
   document.getElementById('upgradeMenu').style.display = 'none';
   document.getElementById('cookPieMenu').style.display = 'none';
@@ -134,7 +148,9 @@ const mainGameLoop = window.setInterval(() => {
   }
   checkupgrade(1);
   checkupgrade(2);
-}, 250);
+}, 500);
+
+update('version', gameData.version)
 
 const saveGameLoop = window.setInterval(() => {
   localStorage.setItem('pieCookerSave', JSON.stringify(gameData));
@@ -143,18 +159,5 @@ const saveGameLoop = window.setInterval(() => {
 if (saveGame !== null) {
   for (let property in gameData) {
     checkdata(property);
-  }
-}
-
-function format(number, type) {
-  const suffixes = ['', 'K', 'M', 'B', 'T'];
-  const exponent = Math.floor(Math.log10(number));
-  const mantissa = number / Math.pow(10, exponent);
-
-  if (exponent < 3) return number.toFixed(0);
-  if (type == 'scientific') return `${mantissa.toFixed(2)}e${exponent}`;
-  if (type == 'engineering') {
-    const suffixIndex = Math.floor(exponent / 3);
-    return (mantissa * Math.pow(10, exponent % 3)).toFixed(2) + suffixes[suffixIndex];
   }
 }
