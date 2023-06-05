@@ -1,3 +1,8 @@
+// Fun Stuff
+console.log("Bugfixing, or here to cheat?")
+console.log("Either way, thanks for playing!")
+console.log("------------------ LEVI2UP ------------------")
+
 // Main Game Data Storage
 var saveGame = JSON.parse(localStorage.getItem('pieCookerSave'));
 let gameData = {
