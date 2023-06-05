@@ -150,8 +150,6 @@ const mainGameLoop = window.setInterval(() => {
   checkupgrade(2);
 }, 500);
 
-document.getElementById('version').innerHTML = 'Version: ${version}';
-
 const saveGameLoop = window.setInterval(() => {
   localStorage.setItem('pieCookerSave', JSON.stringify(gameData));
 }, 15000);
