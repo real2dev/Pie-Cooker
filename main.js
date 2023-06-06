@@ -14,7 +14,6 @@ let gameData = {
   chefAmt: 0,
   kitchenAmt: 0,
   upgradesBought: 0,
-  gameversion: 1.0.7,
   lastTick: Date.now(),
 };
 
