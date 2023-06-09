@@ -11,8 +11,12 @@ let gameData = {
   piePerSecond: 0,
   chefCost: 10,
   kitchenCost: 100,
+  truckCost: 1000,
+  factoryCost: 10000,
   chefAmt: 0,
   kitchenAmt: 0,
+  truckAmt: 0,
+  factoryAmt: 0,
   upgradesBought: 0,
   lastTick: Date.now(),
 };
@@ -74,7 +78,7 @@ function upgrade(amount, variable, price, id) {
   }
 }
 
-function buyBuilding(name, ppsamt, amt, baseformula, realName) {
+function buyBuilding(name, ppsamt, baseformula, realName) {
   if (gameData.pie >= gameData[name + 'Cost']) {
     gameData.pie -= gameData[name + 'Cost'];
     gameData.piePerSecond += ppsamt;
@@ -124,6 +128,8 @@ function buyKitchen() {
 // Main Game Data Control
 hide('upgrade1');
 hide('upgrade2');
+hide('buyKitchen');
+hide('buyFactory')
 
 const mainGameLoop = window.setInterval(() => {
   const diff = Date.now() - gameData.lastTick;
@@ -138,6 +144,9 @@ const mainGameLoop = window.setInterval(() => {
   document.getElementById('buyKitchen').innerHTML = `Buy A Kitchen (Currently Have: ${format(gameData.kitchenAmt, 'engineering')}) Cost: ${format(gameData.kitchenCost, 'engineering')}`;
   if (gameData.piePerSecond > 10) {
     document.getElementById('buyKitchen').style.display = 'inline';
+  }
+  if (gameData.piePerSecond > 50) {
+    document.getElementById('buyFactory').style.display = 'inline';
   }
   if (gameData.piePerSecond > 10 && gameData.upgradesBought < 1) {
     show('upgrade1');
