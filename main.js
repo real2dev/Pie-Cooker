@@ -142,6 +142,7 @@ const mainGameLoop = window.setInterval(() => {
   document.getElementById('piePerCook').innerHTML = `${format(gameData.piePerClick, 'engineering')} Pies Per Click`;
   document.getElementById('buyKitchen').style.display = 'none';
   document.getElementById('buyKitchen').innerHTML = `Buy A Kitchen (Currently Have: ${format(gameData.kitchenAmt, 'engineering')}) Cost: ${format(gameData.kitchenCost, 'engineering')}`;
+  document.getElementById('buyKitchen').innerHTML = `Buy A Pie Factory (Currently Have: ${format(gameData.factoryAmt, 'engineering')}) Cost: ${format(gameData.factoryCost, 'engineering')}`;
   if (gameData.piePerSecond > 10) {
     document.getElementById('buyKitchen').style.display = 'inline';
   }
